@@ -1,6 +1,6 @@
 # Blackjack 2
 
-**Blackjack 2** is a minimalist, single‑player web blackjack game built with Flask. It allows a player to play up to three hands versus an AI dealer. The app runs without a database, using Flask sessions (or server‑side in‑memory store) to maintain game state. It is deployable with Gunicorn + nginx on a Linux server (an Ubuntu laptop in my case).
+**Blackjack 2** is a minimalist, single‑player web blackjack game built with Flask. It allows a player to play up to three hands versus an AI dealer. The app runs without a database, using Flask sessions to maintain game state. It is deployable with Gunicorn + nginx on a Linux server (an Ubuntu laptop in my case).
 
 Note: sessions are ephemeral. Game state is lost on server restarts or if cookies/sessions expire.
 
