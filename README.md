@@ -146,8 +146,8 @@ In app/config.py (or via environment variables) you may define:
 
 1. game logic, playable via terminal localy 
 3. local flask api hosting to play game via postman as needed
-4. create static home / new game homepage
-5. create views / templates for web us
+4. create static home / new game homepage (could also design to use SPA, design decision)
+5. create views / templates for web use
 6. deploy via gunicorn / nginx
 
 ### Later features (after MVP deployment)
@@ -173,7 +173,3 @@ Contributions are welcome!
 Please fork and submit pull requests.
 Include tests for new logic, ensure code style consistency.
 
-
-
-
-# blackjack2
