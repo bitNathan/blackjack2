@@ -43,8 +43,8 @@ cd blackjack2
 
 2. Create Virtual Environment
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv env
+source env/bin/activate
 ```
 
 3. Install dependencies
@@ -55,7 +55,7 @@ pip install -r requirements.txt
 4. Set Environmental Variables
 5. Run in development mode
 ```bash
-python run.py
+flask run
 ```
 6. Run Tests
 ```bash
@@ -74,8 +74,8 @@ After=network.target
 User=youruser
 Group=www-data
 WorkingDirectory=/path/to/blackjack2
-Environment="PATH=/path/to/blackjack2/venv/bin"
-ExecStart=/path/to/blackjack2/venv/bin/gunicorn --config gunicorn_config.py wsgi:app
+Environment="PATH=/path/to/blackjack2/env/bin"
+ExecStart=/path/to/blackjack2/env/bin/gunicorn --config gunicorn_config.py wsgi:app
 
 [Install]
 WantedBy=multi-user.target
@@ -128,7 +128,7 @@ You may configure SSL (Let’s Encrypt) later if you expose publicly.
 
 ## Configuration
 
-In app/config.py (or via environment variables) you may define:
+In environment variables (inserted via app/config.py) you may define:
 
 - SECRET_KEY — used to sign session cookies
 
@@ -149,6 +149,11 @@ In app/config.py (or via environment variables) you may define:
 4. create static home / new game homepage (could also design to use SPA, design decision)
 5. create views / templates for web use
 6. deploy via gunicorn / nginx
+
+##### Current status / immediate todos
+_create service layer to call game actions and set up api blueprint to call service layer, providing full local API playability_
+
+After that we'll be able to have a single player play blackjack over an API... next step will be using some sort of game id stored in service layer to save active game states and allow several people to play simultaneously
 
 ### Later features (after MVP deployment)
 Allow splitting (when player’s two cards are same rank)

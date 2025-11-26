@@ -66,7 +66,9 @@ def test_stand_dealer_wins(monkeypatch):
     game._dealer_turn = lambda: None
 
     response = game.stand()
-    assert "Dealer played" in response
+    assert "dealer_hand" in response
+    assert "player_hand" in response
+    assert "player_value" in response
     assert game.game_over
     assert game.winner == 'dealer'
 

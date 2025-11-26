@@ -49,7 +49,7 @@ class BlackjackGame:
 
         self._dealer_turn()
         self._resolve_game()
-        return "Player stands. Dealer played."
+        return self.status()
 
     def _dealer_turn(self):
         """Dealer hits until reaching 17+"""
