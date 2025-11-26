@@ -2,7 +2,7 @@
 
 **Blackjack 2** is a minimalist, single‑player web blackjack game built with Flask. It allows a player to play up to three hands versus an AI dealer. The app runs without a database, using Flask sessions to maintain game state. It is deployable with Gunicorn + nginx on a Linux server (an Ubuntu laptop in my case).
 
-Note: sessions are ephemeral. Game state is lost on server restarts or if cookies/sessions expire.
+> Note: this README is a blueprint based on the MVP requirements, deployment and features may change slightly during development
 
 
 <!--TOC-->
@@ -149,11 +149,6 @@ In environment variables (inserted via app/config.py) you may define:
 4. create static home / new game homepage (could also design to use SPA, design decision)
 5. create views / templates for web use
 6. deploy via gunicorn / nginx
-
-##### Current status / immediate todos
-_create service layer to call game actions and set up api blueprint to call service layer, providing full local API playability_
-
-After that we'll be able to have a single player play blackjack over an API... next step will be using some sort of game id stored in service layer to save active game states and allow several people to play simultaneously
 
 ### Later features (after MVP deployment)
 Allow splitting (when player’s two cards are same rank)
