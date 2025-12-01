@@ -6,6 +6,8 @@ from .dealer import Dealer
 from .hand import Hand
 
 class BlackjackGame:
+    # TODO reorganize game class to have void functions, except for status
+    
     def __init__(self):
         self.deck = Deck()
         self.player = Player()
@@ -13,9 +15,13 @@ class BlackjackGame:
         self.active_hand_index = 0  # track which hand the player is playing
         self.game_over = False
         self.winner = None  # could be 'player', 'dealer', 'push'
+        self.game_state = "new"
 
     def start_game(self):
         """Deals two cards to player and dealer (dealer gets one face down)"""
+        assert self.game_state == "new"
+
+        self.game_state = "in_play"
         self.deck.shuffle()
         for _ in range(2):
             self.player.hands[0].add_card(self.deck.draw())
@@ -29,8 +35,8 @@ class BlackjackGame:
 
     def hit(self):
         """Player requests another card"""
-        if self.game_over:
-            return "Game already over"
+        assert not self.game_over
+        assert self.game_state == "in_play"
 
         hand = self.current_hand()
         hand.add_card(self.deck.draw())
@@ -38,14 +44,15 @@ class BlackjackGame:
         if hand.is_busted():
             self.game_over = True
             self.winner = 'dealer'
+            self.game_state = "resolved"
             return "Player busts! Dealer wins."
 
         return f"Player hits. Hand value: {hand.value()}"
 
     def stand(self):
         """Player ends turn, dealer plays"""
-        if self.game_over:
-            return "Game already over"
+        assert not self.game_over
+        assert self.game_state == "in_play"
 
         self._dealer_turn()
         self._resolve_game()
@@ -60,6 +67,7 @@ class BlackjackGame:
     def _resolve_game(self):
         """Compare hands and determine winner"""
         self.game_over = True
+        self.game_state = "resolved"
         player_val = self.current_hand().value()
         dealer_val = self.dealer.hands[0].value()
 
@@ -77,6 +85,7 @@ class BlackjackGame:
     def status(self):
         """Returns a summary of game state"""
         return {
+            'game_state': self.game_state,
             'player_hand': [f"{c.rank} of {c.suit}" for c in self.current_hand().cards],
             'player_value': self.current_hand().value(),
             'dealer_hand': [f"{c.rank} of {c.suit}" for c in self.dealer.hands[0].cards],
