@@ -3,16 +3,17 @@
 from .deck import Deck
 from .player import Player
 from .dealer import Dealer
-from .hand import Hand
+# from .hand import Hand
+
 
 class BlackjackGame:
     # TODO reorganize game class to have void functions, except for status
-    
+
     def __init__(self):
         self.deck = Deck()
         self.player = Player()
         self.dealer = Dealer()
-        self.active_hand_index = 0  # track which hand the player is playing
+        self.active_hand_index = 0   # track which hand the player is playing
         self.game_over = False
         self.winner = None  # could be 'player', 'dealer', 'push'
         self.game_state = "new"
@@ -72,7 +73,7 @@ class BlackjackGame:
         dealer_val = self.dealer.hands[0].value()
 
         if self.current_hand().is_busted():
-            self.winner = 'dealer' # player busted
+            self.winner = 'dealer'  # player busted
         elif self.dealer.hands[0].is_busted():
             self.winner = 'player'
         elif player_val > dealer_val:
@@ -86,10 +87,13 @@ class BlackjackGame:
         """Returns a summary of game state"""
         return {
             'game_state': self.game_state,
-            'player_hand': [f"{c.rank} of {c.suit}" for c in self.current_hand().cards],
+            'player_hand': [
+                    f"{c.rank} of {c.suit}" for c in self.current_hand().cards
+            ],
             'player_value': self.current_hand().value(),
-            'dealer_hand': [f"{c.rank} of {c.suit}" for c in self.dealer.hands[0].cards],
+            'dealer_hand': [
+                f"{c.rank} of {c.suit}" for c in self.dealer.hands[0].cards
+            ],
             'dealer_value': self.dealer.hands[0].value(),
             'winner': self.winner if self.game_over else None
         }
-

@@ -1,7 +1,8 @@
 # app/__init__.py
 from flask import Flask
 import os
-from app.config import *
+from app.config import DevelopmentConfig
+
 
 def create_app(config_class=None):
     app = Flask(__name__)

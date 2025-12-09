@@ -1,6 +1,7 @@
 # dealer.py
 from .player import Player
 
+
 class Dealer(Player):
     def play(self, deck):
         hand = self.hands[0]

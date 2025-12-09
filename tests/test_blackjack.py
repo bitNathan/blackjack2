@@ -2,6 +2,7 @@ from app.game import Card
 import random
 import pytest
 
+
 def test_game_initial_deal(game_class_test_class):
     game = game_class_test_class()
     game.start_game()
@@ -17,7 +18,7 @@ def test_player_busts(game_class_test_class):
     game.game_over = True  # simulate finished game
 
     with pytest.raises(AssertionError):
-        game.hit() 
+        game.hit()
 
 
 def test_hit_then_bust(game_class_test_class):
@@ -50,7 +51,7 @@ def test_stand_dealer_wins(game_class_test_class, monkeypatch):
     player_hand.cards = []
     dealer_hand.cards = []
 
-    test_cards =[
+    test_cards = [
         Card('10', 'Hearts'), Card('8', 'Spades'),   # dealer deal
         Card('2', 'Hearts'),    # dealer hit
         Card('10', 'Clubs'), Card('6', 'Diamonds'),  # plaeyr  deaalt
@@ -86,7 +87,7 @@ def test_stand_player_wins(game_class_test_class, monkeypatch):
     player_hand.cards = []
     dealer_hand.cards = []
 
-    test_cards =[
+    test_cards = [
         Card('10', 'Hearts'), Card('8', 'Spades'),   # player deal
         Card('2', 'Hearts'),    # player hit
         Card('10', 'Clubs'), Card('6', 'Diamonds'),  # dealer deaalt
@@ -104,8 +105,9 @@ def test_stand_player_wins(game_class_test_class, monkeypatch):
 
     game._dealer_turn = lambda: None
 
-    response = game.stand()
+    game.stand()
     assert game.winner == 'player'
+
 
 def test_stand_push(game_class_test_class, monkeypatch):
     game = game_class_test_class()
@@ -117,7 +119,7 @@ def test_stand_push(game_class_test_class, monkeypatch):
     player_hand.cards = []
     dealer_hand.cards = []
 
-    test_cards =[
+    test_cards = [
         Card('10', 'Hearts'), Card('8', 'Spades'),   # player deal
         Card('8', 'Clubs'), Card('10', 'Diamonds'),  # dealer deaalt
     ]
@@ -134,6 +136,7 @@ def test_stand_push(game_class_test_class, monkeypatch):
     game.stand()
     assert game.winner == 'push'
 
+
 def test_stand_when_game_over(game_class_test_class):
     game = game_class_test_class()
     game.start_game()
@@ -142,9 +145,6 @@ def test_stand_when_game_over(game_class_test_class):
     with pytest.raises(AssertionError):
         game.stand()
 
-def play_10_games():
-    import random
-from app.game.blackjack import BlackjackGame
 
 def test_random_games_playthrough(game_class_test_class):
     for _ in range(10):
@@ -174,6 +174,7 @@ def test_random_games_playthrough(game_class_test_class):
         assert isinstance(status['dealer_hand'], list)
         assert isinstance(status['player_value'], int)
         assert isinstance(status['dealer_value'], int)
+
 
 def test_status_returns_expected_keys(game_class_test_class):
     game = game_class_test_class()

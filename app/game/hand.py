@@ -24,4 +24,3 @@ class Hand:
 
     def is_blackjack(self):
         return self.value() == 21 and len(self.cards) == 2
-
