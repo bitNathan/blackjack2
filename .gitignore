@@ -1,4 +1,10 @@
-env/*
+env/
+venv/
 .coverage
 *.pyc
+.env
+*.log
 
+node_modules
+dist/
+build/
