@@ -29,9 +29,21 @@ def run_tests():
     env = os.environ.copy()
     env['PYTHONPATH'] = '.'  # same as PYTHONPATH=. in the shell
 
+    # test backend
     cmd = ['pytest', '--cov=app']
-    result = subprocess.run(cmd, env=env)
-    sys.exit(result.returncode)
+    frontend_result = subprocess.run(cmd, env=env)
+
+    # test frontend
+    cmd = ['npx', 'ng', 'test', '--coverage']
+    frontend_path = "./frontend/frontend/"
+    os.chdir(frontend_path)
+    backend_result = subprocess.run(cmd, env=env)
+
+    if (frontend_result != 0 or backend_result != 0):
+        message = "frontend tests failed" if frontend_result != 0 else "backend tests failed"
+        print(message)
+        sys.exit(1)
+    sys.exit(0)
 
 
 class CliGame:

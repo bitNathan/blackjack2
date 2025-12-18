@@ -25,6 +25,8 @@ class DummyGameClass:
             "id": -1,
             "player_hand": self.num_hits,
             "player_value": self.num_stands,
+            "dealer_hand" : "",
+            "dealer_value" : -1,
             "game_state": "game_state",
             "winner": "winner"
         }

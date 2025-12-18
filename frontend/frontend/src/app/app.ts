@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
+  constructor(private router: Router) {}
+
+  goToLandingPage() {
+    this.router.navigate(['']);
+  }
   protected readonly title = signal('frontend');
 }

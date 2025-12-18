@@ -91,6 +91,7 @@ class BlackjackGame:
                     f"{c.rank} of {c.suit}" for c in self.current_hand().cards
             ],
             'player_value': self.current_hand().value(),
+            # all dealer info is returned, service layer obscures some from user / frontend
             'dealer_hand': [
                 f"{c.rank} of {c.suit}" for c in self.dealer.hands[0].cards
             ],

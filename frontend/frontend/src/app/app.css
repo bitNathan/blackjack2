@@ -1,0 +1,33 @@
+.content {
+  text-align: center;
+  /* margin-top: 40px; */
+}
+
+.card {
+  /* margin: 20px auto; */
+  padding: 20px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.highlight-card {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #1976d2;
+  color: white;
+}
+
+.hero-header {
+  cursor: pointer; /* makes it look clickable */
+}
+
+.hero-header:hover {
+  text-decoration: underline; /* optional: underline on hover */
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #666;
+}

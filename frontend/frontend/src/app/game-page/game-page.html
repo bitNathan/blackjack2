@@ -1,0 +1,34 @@
+<div class="game-container">
+
+  <!-- Status Section -->
+  <section class="status-section">
+
+    <div class="status-box player-status">
+      <h3>Player</h3>
+      <p *ngIf="gameState?.hand">
+        Cards: {{gameState?.hand}}</p>
+      <p *ngIf="gameState?.value">
+        Score: {{gameState?.value}}</p>
+    </div>
+
+    <div class="status-box dealer-status">
+      <h3>Dealer</h3>
+      <p *ngIf="gameState?.game_state">
+        Cards: {{gameState?.dealer_hand}}</p>
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <section class="controls-section">
+    <button class="btn" (click)="hit()">Hit</button>
+    <button class="btn" (click)="stand()">Stand</button>
+    <button class="btn" (click)="newGame()">New Game / Deal</button>
+    <button class="btn" (click)="reset()">Reset Game</button>
+  </section>
+
+  <!-- game status information -->
+  <!-- TODO format game status info -->
+  <p *ngIf="gameState?.winner">winner: {{gameState?.winner}}</p>
+  <p *ngIf="gameState?.game_state">game state: {{gameState?.game_state}}</p>
+
+</div>
