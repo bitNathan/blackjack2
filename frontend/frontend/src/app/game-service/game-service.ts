@@ -12,33 +12,34 @@ export class GameService {
   constructor(private http:HttpClient){}
 
   // TODO implement security / nonce woth backend
-   hit(): Observable<GameState>{
-    // TODO get game id
-    return (this.http.post<GameState>(`${this.baseUrl}/games/0/hit`, {}))
+   hit(id:number): Observable<GameState>{
+    return (this.http.post<GameState>(`${this.baseUrl}/games/${id}/hit`, {}))
   }
 
   async startNewGame(): Promise<Observable<GameState>>{
     const result = await firstValueFrom(
       this.http.post<GameState>(`${this.baseUrl}/games`, {})
     );
-    // TODO use game id
-    return this.http.post<GameState>(`${this.baseUrl}/games/0/deal`, {})
+    return this.deal(result.id)
   }
 
-  stand(): Observable<GameState>{
-    // TODO get game id
-    return (this.http.post<GameState>(`${this.baseUrl}/games/0/stand`, {}))
+  deal(id:number):Observable<GameState>{
+    return this.http.post<GameState>(`${this.baseUrl}/games/${id}/deal`, {})
   }
 
-  reset(): Observable<GameState>{
-    // TODO get game id
-    return (this.http.post<GameState>(`${this.baseUrl}/games/0/reset`, {}))
+  stand(id:number): Observable<GameState>{
+    return (this.http.post<GameState>(`${this.baseUrl}/games/${id}/stand`, {}))
+  }
+
+  reset(id:number): Observable<GameState>{
+    return (this.http.post<GameState>(`${this.baseUrl}/games/${id}/reset`, {}))
   }
 
 }
 
 // TODO replace strings with specific types
 export type GameState = {
+  id : number,
   hand : string[],
   dealer_hand : string[],
   dealer_value : number,

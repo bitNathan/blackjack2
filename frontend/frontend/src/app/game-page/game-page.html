@@ -23,12 +23,15 @@
     <button class="btn" (click)="hit()">Hit</button>
     <button class="btn" (click)="stand()">Stand</button>
     <button class="btn" (click)="newGame()">New Game / Deal</button>
-    <button class="btn" (click)="reset()">Reset Game</button>
   </section>
 
   <!-- game status information -->
-  <!-- TODO format game status info -->
-  <p *ngIf="gameState?.winner">winner: {{gameState?.winner}}</p>
+  <!-- TODO format game status info and show with optional debug screen -->
+  <!--
   <p *ngIf="gameState?.game_state">game state: {{gameState?.game_state}}</p>
+  <p *ngIf="gameState?.id != null ">game id: {{gameState?.id}}</p>
+  -->
+  <p *ngIf="gameState?.winner">winner: {{gameState?.winner}}</p>
+  <p *ngIf="gameState?.game_state=='resolved'">game / hand is finished, press reset to start a new one</p>
 
 </div>
